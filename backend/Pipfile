@@ -8,6 +8,7 @@ flask = "*"
 flask-socketio = "*"
 celery = "==3.1.25"
 flask-cors = "*"
+itsdangerous = "*"
 
 [dev-packages]
 watchdog = "*"
