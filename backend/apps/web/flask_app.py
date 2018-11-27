@@ -20,7 +20,8 @@ CORS(app)
 
 # 使用 RabbitMQ 存储 SocketIO 的消息队列，
 # 否则celery的task调用socketio不成功
-socketio = SocketIO(message_queue='amqp://guest:guest@localhost:5672//')
+socketio = SocketIO(message_queue='amqp://guest:guest@localhost:5672//',
+                    async_mode='threading')
 socketio.init_app(app)
 namespace = '/message'
 
