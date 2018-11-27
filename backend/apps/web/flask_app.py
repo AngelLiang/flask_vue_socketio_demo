@@ -16,14 +16,6 @@ from flask_cors import CORS
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
-app.config.update(
-    # Redis
-    # CELERY_BROKER_URL='redis://localhost:6379',
-    # CELERY_RESULT_BACKEND='redis://localhost:6379',
-    # RabbitMQ
-    CELERY_BROKER_URL='amqp://guest:guest@localhost:5672//',
-    CELERY_RESULT_BACKEND='amqp://guest:guest@localhost:5672//',
-)
 CORS(app)
 
 # 使用 RabbitMQ 存储 SocketIO 的消息队列，
@@ -41,7 +33,7 @@ def handle_data_with_namespace(message):
 
 @app.route('/task', methods=['GET', 'POST'])
 def start_background_task():
-    from celery_app import background_task
+    from apps.task.celery_app import background_task
     background_task.delay()
     return 'Started'
 
